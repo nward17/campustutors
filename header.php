@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png"/>
+
+    <title>CampusTutors | The Uber of Tutoring</title>
+
+    <link href="styles/framework.css"                rel="stylesheet" type="text/css">
+    <link href="styles/font-awesome.css"             rel="stylesheet" type="text/css">
+    <link href="styles/animate.css"                  rel="stylesheet" type="text/css">
+    <link href="styles/bootstrap.min.css"            rel="stylesheet" type="text/css">
+    <link href="styles/easy-autocomplete.css"        rel="stylesheet" type="text/css">
+    <link href="styles/jquery.tag-editor.css"        rel="stylesheet" type="text/css">
+    <link href="styles/style.css"                    rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/jqueryui.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.easy-autocomplete.min.js"></script>
+    <script type="text/javascript" src="scripts/framework.plugins.js"></script>
+    <script type="text/javascript" src="scripts/jquery.tag-editor.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+</head>
+<body>
+    
+<div id="preloader">
+	<div id="status">
+    	<p class="center-text">
+			Finding tutors...
+        </p>
+    </div>
+</div>

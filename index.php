@@ -19,8 +19,9 @@
             </div>
             <ul class="sidebar-menu">
                 <li><a href="https://www.nicolasward.com/campustutors/"><i class="fa fa-home"></i>Find a Tutor<i class="fa fa-last fa-circle"></i></a></li>
+                <li><a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/"><i class="fa fa-envelope"></i>Messages<i class="fa fa-last fa-circle"></i></a></li>
                 <li><a href="https://www.nicolasward.com/campustutors/profile.php"><i class="fa fa-user"></i>Edit Profile<i class="fa fa-last fa-circle"></i></a></li>
-                <li><a href="https://www.nicolasward.com/campustutors/php/signout.php"><i class="fa fa-sign-out"></i>Sign out<i class="fa fa-last fa-circle"></i></a></li>
+                <li><a href="https://www.nicolasward.com/campustutors/php/signout.php"><i class="fa fa-sign-out"></i>Sign Out<i class="fa fa-last fa-circle"></i></a></li>
             </ul>
         </div>
     </div>
@@ -28,7 +29,10 @@
     <div id="content" class="snap-content splash">
         <div class="header">
             <a href="#" class="open-nav"><i class="fa fa-navicon hamburger-icon"></i></a>
-            <a href="#" class="header-logo"></a>
+            <div style="text-align: center;">
+                <a href="#" class="header-logo"></a>
+                <a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/" class="header-messages"><i class="fa fa-comment" style="margin-top: 15px;"></i></i></a>
+            </div>
         </div>
         <div class="content content-page">
             <div class="container">
@@ -45,6 +49,19 @@
 </div>
 
 <script type="text/javascript">
+
+    // Request the user and initiate a chat
+    function requestTutor(tutorID, courseID, courseTag) {
+        jQuery.ajax({
+            url: "php/API.php",
+            data: {action: 'requestTutor', tutorID: tutorID, courseID: courseID},
+            type: "POST",
+            success: function() {}
+        });
+        jqac.arrowchat.chatWith(tutorID);
+        jqac.arrowchat.sendMessage(tutorID, "Hi! Would you be able to tutor me in " + courseTag + "?");
+    }
+
     (function($) {
         $(function() {
 
@@ -73,7 +90,9 @@
                             },
                             // Get the tutors
                             onChooseEvent: function() {
+                                var courseID = $(".search-course").getSelectedItemData().id;
                                 var courseTag = $(".search-course").getSelectedItemData().tag;
+
                                 $.ajax({
                                     type: "POST",
                                     dataType: "text",
@@ -81,8 +100,37 @@
                                     cache : false,
                                     data: {action: "findTutors", courseTag: courseTag},
                                     success: function(resp) {
-                                        var tutors = JSON.stringify(resp, null, 2); 
-                                        $(".requestsContainer").html(tutors);
+                                        var tutors = JSON.parse(resp);
+
+                                        // Clear container
+                                        $(".requestsContainer").html("");
+                                        
+                                        // Loop through tutors and print them to the screen
+                                        for (var i = 0; i < tutors.length; i++) {
+                                            var tutor = tutors[i];
+
+                                            var tutorBlock =
+                                            '' + 
+                                            '<div id="tutor-' + tutor.id + '" class="module form-module tutorBlock">' +
+                                                '<div class="profile-image-container leftInnerBlock">' +
+                                                    '<img class="profile-image tutorImage" src="images/profiles/' + tutor.image + '">' +
+                                                    '<span class="tutorName">' + tutor.first_name + '</span>' +
+                                                '</div>' +
+                                                '<div class="rightInnerBlock">' +
+                                                    '<div id="starRating"> '+ (tutor.rating / 20) + ' </div>' +
+                                                    '<div class="rating-container">' +
+                                                        '<span id="rating" class="stars-container stars-' + tutor.rating + ' tutorRating">★★★★★</span>' +
+                                                        '<br>' +
+                                                        '<div id="sessions" class="tutorSessions">' + tutor.completed_sessions + ' sessions</div>' +
+                                                        '<p class="tutorRateContainer"><i class="fa fa-usd"></i> <span class="tutorRate">' + tutor.hourly_rate + '</span> /hour</p>' +
+                                                        '<input class="btn-login" type="button" value="Request" onclick="requestTutor(' + tutor.id + ', \'' + courseID + '\', \'' + courseTag + '\');">' +
+                                                    '</div>' +
+                                                '</div>' +
+                                            '</div>' +
+                                            '';
+
+                                            $(".requestsContainer").append(tutorBlock);
+                                        }
                                     }
                                 });
                             }

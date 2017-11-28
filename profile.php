@@ -19,8 +19,9 @@
             </div>         
             <ul class="sidebar-menu">
                 <li><a href="https://www.nicolasward.com/campustutors/"><i class="fa fa-home"></i>Find a Tutor<i class="fa fa-last fa-circle"></i></a></li>
+                <li><a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/"><i class="fa fa-envelope"></i>Messages<i class="fa fa-last fa-circle"></i></a></li>
                 <li><a href="https://www.nicolasward.com/campustutors/profile.php"><i class="fa fa-user"></i>Edit Profile<i class="fa fa-last fa-circle"></i></a></li>
-                <li><a href="https://www.nicolasward.com/campustutors/php/signout.php"><i class="fa fa-sign-out"></i>Sign out<i class="fa fa-last fa-circle"></i></a></li>
+                <li><a href="https://www.nicolasward.com/campustutors/php/signout.php"><i class="fa fa-sign-out"></i>Sign Out<i class="fa fa-last fa-circle"></i></a></li>
             </ul>
         </div>
     </div>
@@ -28,7 +29,10 @@
     <div id="content" class="snap-content splash">
         <div class="header">
             <a href="#" class="open-nav"><i class="fa fa-navicon hamburger-icon"></i></a>
-            <a href="#" class="header-logo"></a>
+            <div style="text-align: center;">
+                <a href="#" class="header-logo"></a>
+                <a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/" class="header-messages"><i class="fa fa-comment" style="margin-top: 15px;"></i></i></a>
+            </div>
         </div>
         <div class="content content-page">
             <div class="container">

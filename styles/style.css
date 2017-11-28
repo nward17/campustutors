@@ -3,7 +3,7 @@
 
 Project:	 SlideOut
 Version:	 1.0
-Primary Use: Site Template 
+Primary Use: Site Template
 Layout:      Responsive
 Platforms:   Mobile & Tablet
 -----------------------------
@@ -11,11 +11,11 @@ Platforms:   Mobile & Tablet
 [Table Of Contents]
 1. General
 2. Sidebar Header
-3. Sidebar Menu 
-4. Homepage Header 
-5. Ball Columns 
+3. Sidebar Menu
+4. Homepage Header
+5. Ball Columns
 6. Content Strip
-7. Staff Slider 
+7. Staff Slider
 8. Quote Slider
 9. Footer Settings
 -------------------
@@ -48,13 +48,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-track {
-    border-radius: 10px;  
-    background-color: #ffffff; 
+    border-radius: 10px;
+    background-color: #ffffff;
 }
 
 .all-elements{
 	position:absolute;
-	overflow-x:hidden!important;	
+	overflow-x:hidden!important;
 	width:100%;
 	height:100%;
 	min-height:100%;
@@ -72,7 +72,7 @@ body::-webkit-scrollbar-track {
 	z-index:11;
 	background-color:#26292b;
 	height:65px;
-	border-bottom:solid 2px #2d3033;	
+	border-bottom:solid 2px #2d3033;
 }
 
 .sidebar-logo{
@@ -84,8 +84,13 @@ body::-webkit-scrollbar-track {
 	height:40px;
 	float:left;
 	background-repeat: no-repeat;
-    background-position: 50%;
-    border-radius: 50%;
+  background-position: 50%;
+  border-radius: 50%;
+	-webkit-border-radius: 99em;
+	-moz-border-radius: 99em;
+	border-radius: 99em;
+	border: 1px solid #eee;
+	box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-message{
@@ -131,12 +136,12 @@ body::-webkit-scrollbar-track {
 }
 
 .active-item{
-	background-color:#27ae60!important;	
+	background-color:#27ae60!important;
 }
 
 
 .active-item:hover{
-	background-color:#27ae60!important;	
+	background-color:#27ae60!important;
 }
 
 .sidebar-menu{
@@ -154,13 +159,13 @@ body::-webkit-scrollbar-track {
 .submenu{
 	max-height:0px;
 	overflow:hidden;
-	margin-bottom:0px;	
-	transition:all 300ms ease;	
+	margin-bottom:0px;
+	transition:all 300ms ease;
 }
 
 .submenu-active{
 	max-height:250px;
-	transition:all 300ms ease;	
+	transition:all 300ms ease;
 }
 
 .show-submenu .fa-plus{
@@ -175,14 +180,14 @@ body::-webkit-scrollbar-track {
 .show-submenu-active .fa-plus{
     -ms-transform: rotate(45deg); /* IE 9 */
     -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);	
+    transform: rotate(45deg);
 	transition:all 300ms ease;
 	color:#c0392b;
 	opacity:1;
 }
 
 .show-submenu-active{
-	background-color:rgba(255, 255, 255,0.05);	
+	background-color:rgba(255, 255, 255,0.05);
 }
 
 .submenu-item-active{
@@ -211,7 +216,7 @@ body::-webkit-scrollbar-track {
 }
 
 .sidebar-menu li a:hover{
-	background-color:rgba(255, 255, 255,0.05);	
+	background-color:rgba(255, 255, 255,0.05);
 }
 
 .sidebar-menu li a i:first-child{
@@ -228,14 +233,14 @@ body::-webkit-scrollbar-track {
 	font-size:8px;
 	text-align:center;
 	margin-top:25px;
-	color:#5a6166;	
+	color:#5a6166;
 	opacity:0.5;
 }
 
 .sidebar-menu li a{
 	color:#FFFFFF;
 	padding-left:20px;
-	padding-right:30px;	
+	padding-right:30px;
 }
 
 
@@ -256,7 +261,7 @@ body::-webkit-scrollbar-track {
     border-radius:45px;
 	text-align:center;
 	float:left;
-    -ms-transform: rotate(0deg); 
+    -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
 	transition:all 200ms ease;
@@ -265,7 +270,7 @@ body::-webkit-scrollbar-track {
 }
 
 .homepage-header .open-nav:hover{
-    background-color:rgba(255,255,255,0.1);   
+    background-color:rgba(255,255,255,0.1);
     transition:all 200ms ease;
 }
 
@@ -316,7 +321,7 @@ body::-webkit-scrollbar-track {
 	line-height:64px;
 	text-align:center;
 	float:left;
-    -ms-transform: rotate(0deg); 
+    -ms-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
 	transition:all 400ms ease;
@@ -370,7 +375,7 @@ body::-webkit-scrollbar-track {
 }
 
 .header-tip p{
-	opacity:0.8;	
+	opacity:0.8;
 }
 
 .header .open-socials{
@@ -380,7 +385,7 @@ body::-webkit-scrollbar-track {
 	height:64px;
 	line-height:64px;
 	text-align:center;
-	float:right;	
+	float:right;
 }
 
 .header em{
@@ -394,15 +399,23 @@ body::-webkit-scrollbar-track {
 }
 
 .header .header-logo{
-	margin-top:11px;
-	margin-left:auto;
-	margin-right:20px;
-	background-image:url(../images/icon.png);
-	background-size:40px 40px;
-	display:block;
-	width:40px;
-	height:40px;
-	float:right
+	margin-top:18px;
+	background-image:url(../images/logo.png);
+	background-size:160px 30px;
+	background-repeat: no-repeat;
+	width:160px;
+	height:30px;
+  	display:inline-block;
+}
+
+/* Added by Nicolas Ward */
+.header .header-messages{
+	font-size:30px;
+	color:white;
+	width:65px;
+	height:65px;
+	text-align:center;
+	float:right;
 }
 
 /* 5. Ball Columns */
@@ -415,7 +428,7 @@ body::-webkit-scrollbar-track {
 	height:170px;
 	line-height:175px;
 	text-align:center;
-	margin-left:-85px;	
+	margin-left:-85px;
 	padding-left:10px;
 	margin-right:20px;
 	float:left;
@@ -438,7 +451,7 @@ body::-webkit-scrollbar-track {
 	height:170px;
 	line-height:175px;
 	text-align:center;
-	margin-right:-85px;	
+	margin-right:-85px;
 	padding-right:0px;
 	margin-left:20px;
 	float:right;
@@ -462,12 +475,12 @@ body::-webkit-scrollbar-track {
 }
 
 .content-strip{
-	margin-bottom:30px;	
+	margin-bottom:30px;
 }
 
 .content-strip h4{
 	color:#FFFFFF;
-	position:absolute;	
+	position:absolute;
 	z-index:9999;
 	text-transform:uppercase;
 	margin-top:27px;
@@ -475,12 +488,12 @@ body::-webkit-scrollbar-track {
 }
 
 .content-strip{
-	max-height:100px;	
+	max-height:100px;
 }
 
 .content-strip p{
 	color:#FFFFFF;
-	position:absolute;	
+	position:absolute;
 	z-index:999;
 	margin-top:48px;
 	padding-left:30px;
@@ -496,7 +509,7 @@ body::-webkit-scrollbar-track {
 	font-size:32px;
 	position:absolute;
 	color:#FFFFFF;
-	right:30px;	
+	right:30px;
 	z-index:999;
 	margin-top:36px;
 }
@@ -510,32 +523,32 @@ body::-webkit-scrollbar-track {
 
 @media (min-width:768px){
 	.content-strip{
-		max-height:140px;	
+		max-height:140px;
 	}
-	
+
 	.content-strip h4{
-		font-size:20px;	
+		font-size:20px;
 		margin-top:45px;
 		padding-left:50px;
 	}
-	
+
 	.content-strip p{
-		font-size:13px;	
+		font-size:13px;
 		margin-top:75px;
 		padding-left:50px;
 	}
-	
+
 	.content-strip i{
 		font-size:40px;
 		margin-top:53px;
-		right:50px;	
+		right:50px;
 	}
 }
 
 /* 7. Staff Slider */
 
 .staff-item img{
-	border-radius:300px;	
+	border-radius:300px;
 	max-width:150px;
 	margin-left:auto;
 	margin-right:auto;
@@ -543,7 +556,7 @@ body::-webkit-scrollbar-track {
 
 .staff-item h4{
 	text-align:center;
-	margin-top:20px;	
+	margin-top:20px;
 	font-size:16px;
 }
 
@@ -558,7 +571,7 @@ body::-webkit-scrollbar-track {
 }
 
 .staff-item strong{
-	display:block;	
+	display:block;
 	font-weight:400;
 	text-align:center;
 	padding-left:20px;
@@ -571,7 +584,7 @@ body::-webkit-scrollbar-track {
 	display:block;
 	margin-top:-10px;
 	color:#e34e47;
-	margin-bottom:10px;	
+	margin-bottom:10px;
 }
 
 /* 8. Quote Slider */
@@ -579,7 +592,7 @@ body::-webkit-scrollbar-track {
 .quote-slider h4{
 	font-family:'Source Sans Pro', sans-serif;
 	font-size:18px;
-	font-weight:300;	
+	font-weight:300;
 	width:87%;
 	text-align:center;
 	margin-left:auto;
@@ -589,7 +602,7 @@ body::-webkit-scrollbar-track {
 
 .quote-slider a{
 	text-align:center;
-	margin-top:20px;	
+	margin-top:20px;
 }
 
 
@@ -597,7 +610,7 @@ body::-webkit-scrollbar-track {
 
 
 .footer{
-	background-color:#191b1d;	
+	background-color:#191b1d;
 }
 
 .footer p{
@@ -609,7 +622,7 @@ body::-webkit-scrollbar-track {
 }
 
 .footer-socials{
-	width:160px;	
+	width:160px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:20px;
@@ -633,7 +646,7 @@ body::-webkit-scrollbar-track {
 /*Delete At The End Of Buidl */
 
 .active-homepage-tab{
-	font-weight:800!important;	
+	font-weight:800!important;
 	border-bottom:solid 1px rgba(39, 174, 96, 0.5);
 	position:relative;
 	color:#6d6b6b;
@@ -664,16 +677,16 @@ body::-webkit-scrollbar-track {
 	font-weight:400;
 	font-size:12px;
 	color:#1f1f1f;
-	display:inline-block;	
+	display:inline-block;
 	min-width:100px;
 	padding-bottom:15px;
-	transition:all 200ms ease;	
+	transition:all 200ms ease;
 }
 
 @media (min-width:768px){
 	.homepage-tab{
 		min-width:200px;
-		transition:all 200ms ease;	
+		transition:all 200ms ease;
 	}
 }
 
@@ -681,53 +694,59 @@ body::-webkit-scrollbar-track {
 	padding-top:20px!important;
 }
 
-.btn-login { 
-  color: #FFFFFF; 
-  background-color: #2DACDF; 
-  border-color: #209FD2; 
-} 
- 
-.btn-login:hover, 
-.btn-login:focus, 
-.btn-login:active, 
-.btn-login.active, 
-.open .dropdown-toggle.btn-login { 
-  color: #FFFFFF; 
-  background-color: #209FD2; 
-  border-color: #209FD2; 
-} 
- 
-.btn-login:active, 
-.btn-login.active, 
-.open .dropdown-toggle.btn-login { 
-  background-image: none; 
-} 
- 
-.btn-login.disabled, 
-.btn-login[disabled], 
-fieldset[disabled] .btn-login, 
-.btn-login.disabled:hover, 
-.btn-login[disabled]:hover, 
-fieldset[disabled] .btn-login:hover, 
-.btn-login.disabled:focus, 
-.btn-login[disabled]:focus, 
-fieldset[disabled] .btn-login:focus, 
-.btn-login.disabled:active, 
-.btn-login[disabled]:active, 
-fieldset[disabled] .btn-login:active, 
-.btn-login.disabled.active, 
-.btn-login[disabled].active, 
-fieldset[disabled] .btn-login.active { 
-  background-color: #2DACDF; 
-  border-color: #209FD2; 
-} 
- 
-.btn-login .badge { 
-  color: #2DACDF; 
-  background-color: #FFFFFF; 
+.btn-login {
+  color: #FFFFFF;
+  background-color: #2DACDF;
+  border-color: #209FD2;
+}
+
+.btn-login:hover,
+.btn-login:focus,
+.btn-login:active,
+.btn-login.active,
+.open .dropdown-toggle.btn-login {
+  color: #FFFFFF;
+  background-color: #209FD2;
+  border-color: #209FD2;
+}
+
+.btn-login:active,
+.btn-login.active,
+.open .dropdown-toggle.btn-login {
+  background-image: none;
+}
+
+.btn-login.disabled,
+.btn-login[disabled],
+fieldset[disabled] .btn-login,
+.btn-login.disabled:hover,
+.btn-login[disabled]:hover,
+fieldset[disabled] .btn-login:hover,
+.btn-login.disabled:focus,
+.btn-login[disabled]:focus,
+fieldset[disabled] .btn-login:focus,
+.btn-login.disabled:active,
+.btn-login[disabled]:active,
+fieldset[disabled] .btn-login:active,
+.btn-login.disabled.active,
+.btn-login[disabled].active,
+fieldset[disabled] .btn-login.active {
+  background-color: #2DACDF;
+  border-color: #209FD2;
+}
+
+.btn-login .badge {
+  color: #2DACDF;
+  background-color: #FFFFFF;
 }
 
 /* Home Content */
+
+/* Override */
+.content {
+	margin-left: 0px;
+	margin-right: 0px;
+}
 
 #searchCourseHome {
 	border-radius: 0;
@@ -735,14 +754,52 @@ fieldset[disabled] .btn-login.active {
 
 .requestsContainer {
 	height: 500px;
-	background-color: lightgrey;
 	margin-top: -150px;
+}
+
+.tutorBlock {
+    height: 150px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px !important;
+}
+
+.leftInnerBlock {
+	float: left;
+	width: 125px;
+	text-align: center;
+	margin-left: -10px !important;
+}
+
+.rightInnerBlock {
+	padding-right: 10px;
+}
+
+.tutorImage {
+	width: 100px !important;
+    height: 100px !important;
+    margin: auto;
+    margin-bottom: 5px !important;
+}
+
+.tutorName {
+	font-weight: bold;
+	color: #2AABDF;
+	margin-bottom: 0px;
+}
+
+.tutorRating {
+	font-size: 12pt !important;
+}
+
+.tutorRateContainer {
+	margin-bottom: 7px !important;
 }
 
 /* Background Image */
 
 .splash {
-	background-image: url(../images/blur_2.png);
+	background-image: url(../images/background.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;

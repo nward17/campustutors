@@ -15,7 +15,7 @@
     <link href="styles/bootstrap.min.css"            rel="stylesheet" type="text/css">
     <link href="styles/easy-autocomplete.css"        rel="stylesheet" type="text/css">
     <link href="styles/jquery.tag-editor.css"        rel="stylesheet" type="text/css">
-    <link href="styles/style.css"                    rel="stylesheet" type="text/css">
+    <link href="styles/style.css?version=2"          rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/jqueryui.js"></script>
@@ -25,8 +25,17 @@
     <script type="text/javascript" src="scripts/framework.plugins.js"></script>
     <script type="text/javascript" src="scripts/jquery.tag-editor.js"></script>
     <script type="text/javascript" src="scripts/custom.js"></script>
+
+    <!-- Arrowchat -->
+    <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="/campustutors/arrowchat/external.php?type=css" charset="utf-8" />
+    <script type="text/javascript" src="/campustutors/arrowchat/includes/js/jquery.js"></script>
+    <script type="text/javascript" src="/campustutors/arrowchat/includes/js/jquery-ui.js"></script>
 </head>
 <body>
+
+<!-- Arrowchat -->
+<script type="text/javascript" src="/campustutors/arrowchat/external.php?type=djs" charset="utf-8"></script>
+<script type="text/javascript" src="/campustutors/arrowchat/external.php?type=js" charset="utf-8"></script>
     
 <div id="preloader">
 	<div id="status">

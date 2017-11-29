@@ -17,6 +17,7 @@
 	        case 'requestTutor' : requestTutor(); break;
 	        case 'getSessionInformation' : getSessionInformation(); break;
 	        case 'updateSession' : updateSession(); break;
+	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
 	    }
 	} else die('Direct access not permitted.');
 
@@ -238,4 +239,22 @@
         // Delete the Arrowchat messages between tutor and tutee
         $stmt = $conn->prepare("DELETE FROM arrowchat WHERE (`from` = :tutor_id AND `to` = :tutee_id) OR (`from` = :tutee_id AND `to` = :tutor_id)");
         $stmt->execute(array(':tutor_id' => $tutor_id, ':tutee_id' => $tutee_id));
+	}
+
+	function checkForUnreadMessages() {
+		global $conn; 
+
+		// Get id of current user
+		$user_id = $_SESSION['id'];
+
+		// Select unread messages
+		$stmt = $conn->prepare("SELECT id FROM arrowchat WHERE `to` = :user_id AND user_read = 0");
+        $stmt->execute(array(':user_id' => $user_id));
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($rows) > 0) {
+        	echo count($rows);
+        } else {
+        	echo 0;
+        }
 	}

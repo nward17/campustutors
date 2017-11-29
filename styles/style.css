@@ -1088,3 +1088,18 @@ fieldset[disabled] .btn-login.active {
 #eac-container-searchCourseProfile ul {
 	max-height: 125px;
 }
+
+/* New Message Notification */
+
+.notification {
+	background-color: rgba(212, 19, 13, 1);
+    color: #fff;
+    position: absolute;
+    border-radius: 20px;
+    top: 10px;
+    left: 32px;
+    width: 20px;
+    height: 20px;
+    font-size: 10pt;
+    display: none;
+ }

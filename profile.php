@@ -31,7 +31,10 @@
             <a href="#" class="open-nav"><i class="fa fa-navicon hamburger-icon"></i></a>
             <div style="text-align: center;">
                 <a href="#" class="header-logo"></a>
-                <a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/" class="header-messages"><i class="fa fa-comment" style="margin-top: 15px;"></i></i></a>
+                <a href="https://www.nicolasward.com/campustutors/arrowchat/mobile/" class="header-messages">
+                    <i class="fa fa-comment" style="margin-top: 15px;"></i>
+                    <span class="notification"></span>
+                </a>
             </div>
         </div>
         <div class="content content-page">
@@ -168,6 +171,25 @@
                     $(".search-course").easyAutocomplete(options);
                 }
             });
+
+            // Check for unread messages
+            checkForUnreadMessages();
+            function checkForUnreadMessages() {
+                $.ajax({
+                    url: "php/API.php",
+                    data: {action: 'checkForUnreadMessages'},
+                    type: "POST",
+                    success: function(resp) {
+                        if (resp > 0) {
+                            $(".notification").css('display', 'block');
+                            $(".notification").html(resp);
+                        }
+                        setTimeout(function(){
+                            checkForUnreadMessages();
+                        }, 3000);
+                    }
+                });
+            }
 
         });
     })(jQuery);

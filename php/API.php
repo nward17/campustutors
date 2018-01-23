@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	if(isset($_POST) && !empty($_POST)) {
+	//if(isset($_POST) && !empty($_POST)) {
 		define('access', true);
-		include('config.php');
+		include('database.php');
 
 	    $action = $_POST['action'];
 	    switch($action) {
@@ -18,8 +18,11 @@
 	        case 'getSessionInformation' : getSessionInformation(); break;
 	        case 'updateSession' : updateSession(); break;
 	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
+	        case 'insertDeviceID' : insertDeviceID(); break;
+	        case 'updateDeviceID' : updateDeviceID(); break;
+	        case 'newMessagePushNotification' : newMessagePushNotification(); break;
 	    }
-	} else die('Direct access not permitted.');
+	//} else die('Direct access not permitted.');
 
 	function signIn() {
 		global $conn;
@@ -47,7 +50,7 @@
         	$_SESSION['first_name'] = $user['first_name'];
         	$_SESSION['image'] = $user['image'];
 
-        	echo 'success';
+        	echo $user['id'];
         } else {
         	echo 'failure';
         }
@@ -170,7 +173,7 @@
 		$other_user_id = $_POST['otherUserID'];
 
 		// Grab the correct session
-		$stmt = $conn->prepare("SELECT * FROM requests WHERE ((tutor_id = :user_id AND tutee_id = :other_user_id) OR (tutor_id = :other_user_id AND tutee_id = :user_id)) AND (status = 0 OR status = 1)");
+		$stmt = $conn->prepare("SELECT * FROM requests WHERE ((tutor_id = :user_id AND tutee_id = :other_user_id) OR (tutor_id = :other_user_id AND tutee_id = :user_id)) ORDER BY id DESC LIMIT 1");
 		$stmt->execute(array(':user_id' => $user_id, ':other_user_id' => $other_user_id));
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -257,4 +260,90 @@
         } else {
         	echo 0;
         }
+	}
+
+	// Insert the device ID of the Android or iOS device into the database
+	function insertDeviceID() {
+		global $conn;
+
+		// Get the device id
+		$device_id = $_POST['deviceID'];
+
+		// Insert the id
+		$stmt = $conn->prepare("INSERT INTO mobile_devices (device_id) VALUES (:device_id)");
+		$stmt->execute(array(':device_id' => $device_id));
+	}
+
+	// Update the device ID of the Android or iOS device to include the user id
+	function updateDeviceID() {
+		global $conn;
+
+		// Get id of current user
+		$user_id = $_POST['userID'];
+
+		// Get the device id
+		$device_id = $_POST['deviceID'];
+
+		// Update the device with the user id
+		$stmt = $conn->prepare("UPDATE mobile_devices SET user_id = :user_id WHERE device_id = :device_id");
+		$stmt->execute(array(':user_id' => $user_id, ':device_id' => $device_id));
+	}
+
+	// Send a push notification when a message is sent
+	function newMessagePushNotification($to, $message) {
+		global $conn;
+
+		// Get the Firebase API key
+		global $api_key;
+
+		// Get id of current user
+		$from = $_SESSION['id'];
+
+		// Get from user
+		$stmt = $conn->prepare("SELECT * FROM users WHERE id = :user_id");
+        $stmt->execute(array(':user_id' => $from));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Get the from user's name
+		$from_name = $row['first_name'];
+
+		// Get devices
+		$stmt = $conn->prepare("SELECT * FROM mobile_devices WHERE user_id = :user_id");
+        $stmt->execute(array(':user_id' => $to));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// Get the device id
+		$device_id = $row['device_id'];
+
+		// Set up the notification message
+		$notification = array
+		(
+			'title' => $from_name . ' has sent you a new message!',
+			'body'	=> $message,
+			'icon'	=> 'myicon',
+			'sound' => 'mySound'
+		);
+
+		$fields = array 
+		(
+			'to'			=> $device_id,
+			'notification'	=> $notification
+		);
+
+		$headers = array
+		(
+			'Authorization: key=' . $api_key,
+			'Content-Type: application/json'
+		);
+
+		// Are you silly? I'm still gonna send it.
+		$ch = curl_init();
+		curl_setopt($ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+		curl_setopt($ch,CURLOPT_POST, true);
+		curl_setopt($ch,CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch,CURLOPT_POSTFIELDS, json_encode($fields));
+		$result = curl_exec($ch);
+		curl_close($ch);
 	}

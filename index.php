@@ -126,7 +126,7 @@
                                                         '<br>' +
                                                         '<div id="sessions" class="tutorSessions">' + tutor.completed_sessions + ' sessions</div>' +
                                                         '<p class="tutorRateContainer"><i class="fa fa-usd"></i> <span class="tutorRate">' + tutor.hourly_rate + '</span> /hour</p>' +
-                                                        '<input class="btn-login" type="button" value="Request" onclick="requestTutor(' + tutor.id + ', \'' + courseID + '\', \'' + courseTag + '\');">' +
+                                                        '<input class="btn-login" style="font-size: 10pt; font-weight: bold;" type="button" value="Request" onclick="requestTutor(' + tutor.id + ', \'' + courseID + '\', \'' + courseTag + '\');">' +
                                                     '</div>' +
                                                 '</div>' +
                                             '</div>' +

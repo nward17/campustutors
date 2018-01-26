@@ -698,6 +698,7 @@ body::-webkit-scrollbar-track {
   color: #FFFFFF;
   background-color: #2DACDF;
   border-color: #209FD2;
+  cursor: pointer;
 }
 
 .btn-login:hover,
@@ -748,6 +749,12 @@ fieldset[disabled] .btn-login.active {
 	margin-right: 0px;
 }
 
+.container {
+	/* Line up container with hamburger icon and chat icon */
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+}
+
 #searchCourseHome {
 	border-radius: 0;
 }
@@ -759,8 +766,8 @@ fieldset[disabled] .btn-login.active {
 
 .tutorBlock {
     height: 150px;
-    padding: 10px;
-    margin: auto;
+    padding: 20px;
+    padding-bottom: 145px;
     margin-bottom: 20px !important;
 }
 
@@ -769,10 +776,6 @@ fieldset[disabled] .btn-login.active {
 	width: 125px;
 	text-align: center;
 	margin-left: -10px !important;
-}
-
-.rightInnerBlock {
-	padding-right: 10px;
 }
 
 .tutorImage {
@@ -910,7 +913,6 @@ fieldset[disabled] .btn-login.active {
   position: relative;
   display: inline-block;
   color: transparent;
-  font-size: 15pt;
 }
 
 .stars-container:before {
@@ -947,13 +949,21 @@ fieldset[disabled] .btn-login.active {
 .form-module {
   position: relative;
   background: #ffffff;
-  max-width: 320px;
-  width: 100%;
+  max-width: 100%;
+  width: 450px;
   border-top: 5px solid #33b5e5;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   overflow: visible;
 }
+
+/* Mobile */
+@media only screen and (max-width: 450px) {
+    .form-module {
+        max-width: 100%;
+    }
+}
+
 .form-module .toggle {
   cursor: pointer;
   float: right;

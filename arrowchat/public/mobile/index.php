@@ -101,7 +101,7 @@
 			    	setTimeout(function() {
 					    var otherUserID = jQuery(".chat_user_content").attr('id').split("_")[2];
 						checkSession(otherUserID);
-					}, 100);
+					}, 300);
 			    }
 			});
 

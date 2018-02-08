@@ -155,12 +155,17 @@
 		$stmt = $conn->prepare("SELECT id FROM requests WHERE ((tutor_id = :tutor_id AND tutee_id = (SELECT `users`.id FROM users WHERE email = :email)) OR (tutor_id = (SELECT `users`.id FROM users WHERE email = :email) AND tutee_id = :tutor_id)) AND (status = 0 OR status = 1)");
 		$stmt->execute(array(':tutor_id' => $tutor_id, ':email' => $email));
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $row_count = count($rows);
         
-        if (count($rows) == 0) {
+        if ($row_count == 0) {
         	// Create a session for the tutor and tutee
 			$stmt = $conn->prepare("INSERT INTO requests (tutor_id, tutee_id, courses_id) VALUES (:tutor_id, (SELECT `users`.id FROM users WHERE email = :email), :course_id)");
 	        $stmt->execute(array(':tutor_id' => $tutor_id, ':email' => $email, ':course_id' => $course_id));
         }
+
+        // Return row count to JS so we know if a session already exists
+        echo $row_count;
 	}
 
 	function getSessionInformation() {

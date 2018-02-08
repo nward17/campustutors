@@ -53,16 +53,24 @@
 
 <script type="text/javascript">
 
-    // Request the user and initiate a chat
+    // Request the user and initiate a chat between the tutor and tutee
     function requestTutor(tutorID, courseID, courseTag) {
-        jQuery.ajax({
+
+        var requestedTutor = jQuery.ajax({
             url: "php/API.php",
             data: {action: 'requestTutor', tutorID: tutorID, courseID: courseID},
-            type: "POST",
-            success: function() {}
+            type: "POST"
         });
-        jqac.arrowchat.chatWith(tutorID);
-        jqac.arrowchat.sendMessage(tutorID, "Hi! Would you be able to tutor me in " + courseTag + "?");
+
+        jQuery.when(requestedTutor).done(function (sessionCount) {
+            // Open chat whether session already exists or not
+            jqac.arrowchat.chatWith(tutorID);
+
+            // No active session exists, send initial correspondence
+            if (sessionCount == 0) {
+                jqac.arrowchat.sendMessage(tutorID, "Hi! Would you be able to tutor me in " + courseTag + "?");
+            }
+        });
     }
 
     (function($) {

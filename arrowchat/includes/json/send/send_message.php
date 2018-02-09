@@ -33,8 +33,8 @@
 		{
 
 			/* Added by Nicolas Ward to send a push notification to "to" */
-			$_POST['action'] = 'newMessagePushNotification';
-			include '../../../../php/API.php';
+			//$_POST['action'] = 'newMessagePushNotification';
+			//include '../../../../php/API.php';
 
 			$result = $db->execute("
 				SELECT block_chats

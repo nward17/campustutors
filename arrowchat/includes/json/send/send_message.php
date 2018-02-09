@@ -1,5 +1,8 @@
 <?php
 
+	/* Added by Nicolas Ward so we can add the post action */
+	session_start();
+
 	/*
 	|| #################################################################### ||
 	|| #                             ArrowChat                            # ||

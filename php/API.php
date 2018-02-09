@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	//if(isset($_POST) && !empty($_POST)) {
+	if(isset($_POST) && !empty($_POST)) {
 		define('access', true);
 		include('database.php');
 
@@ -22,7 +22,7 @@
 	        case 'updateDeviceID' : updateDeviceID(); break;
 	        case 'newMessagePushNotification' : newMessagePushNotification(); break;
 	    }
-	//} else die('Direct access not permitted.');
+	} else die('Direct access not permitted.');
 
 	function signIn() {
 		global $conn;

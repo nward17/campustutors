@@ -33,7 +33,7 @@
 		{
 
 			/* Added by Nicolas Ward to send a push notification to "to" */
-			//$_POST['action'] = 'newMessagePushNotification';
+			print_r($_POST);
 			include '../../../../php/API.php';
 
 			$result = $db->execute("

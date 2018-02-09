@@ -26,8 +26,6 @@
 	$to 		= get_var('to');
 	$message 	= get_var('message');
 
-	print_r($_POST);
-
 	// ######################### START POST MESSAGE ##########################
 	if (!empty($_POST['to']) AND !empty($_POST['message'])) 
 	{
@@ -36,6 +34,8 @@
 
 			/* Added by Nicolas Ward to send a push notification to "to" */
 			include '../../../../php/API.php';
+
+			echo (dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 
 			$result = $db->execute("
 				SELECT block_chats

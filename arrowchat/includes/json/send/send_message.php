@@ -17,9 +17,6 @@
 	header("Cache-Control: post-check=0, pre-check=0", false);
 	header("Pragma: no-cache");
 
-	/* Added by Nicolas Ward to allow for API calls */
-	include '../../../../php/API.php';
-
 	// ########################## INCLUDE BACK-END ###########################
 	require_once (dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'bootstrap.php');
 	require_once (dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . AC_FOLDER_INCLUDES . DIRECTORY_SEPARATOR . 'init.php');
@@ -34,8 +31,10 @@
 	{
 		if (logged_in($userid)) 
 		{
+
 			/* Added by Nicolas Ward to send a push notification to "to" */
-			newMessagePushNotification($_POST['to'], $_POST['message']);
+			$_POST['action'] = 'newMessagePushNotification';
+			include '../../../../php/API.php';
 
 			$result = $db->execute("
 				SELECT block_chats

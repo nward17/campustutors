@@ -295,7 +295,7 @@
 	}
 
 	// Send a push notification when a message is sent
-	function newMessagePushNotification($to, $message) {
+	function newMessagePushNotification() {
 		global $conn;
 
 		// Get the Firebase API key
@@ -311,6 +311,12 @@
 
         // Get the from user's name
 		$from_name = $row['first_name'];
+
+		// Get id of to user
+		$to = $_POST['to'];
+
+		// Get message
+		$message = $_POST['message'];
 
 		// Get devices
 		$stmt = $conn->prepare("SELECT * FROM mobile_devices WHERE user_id = :user_id");

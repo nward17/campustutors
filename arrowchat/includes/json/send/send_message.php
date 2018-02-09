@@ -33,9 +33,7 @@
 		{
 
 			/* Added by Nicolas Ward to send a push notification to "to" */
-			include '../../../../php/API.php';
-
-			echo (dirname(dirname(dirname(dirname(dirname(__FILE__))))));
+			require_once (dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DIRECTORY_SEPARATOR . 'php/API.php');
 
 			$result = $db->execute("
 				SELECT block_chats

@@ -20,9 +20,8 @@
 	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
 	        case 'insertDeviceID' : insertDeviceID(); break;
 	        case 'updateDeviceID' : updateDeviceID(); break;
-	        case 'newMessagePushNotification' : newMessagePushNotification(); break;
 	    }
-	} else die('Direct access not permitted.');
+	}
 
 	function signIn() {
 		global $conn;
@@ -295,7 +294,8 @@
 	}
 
 	// Send a push notification when a message is sent
-	function newMessagePushNotification() {
+	// NOTE: This function is accessed directly from Arrowchat's send_message.php
+	function newMessagePushNotification($to, $message) {
 		global $conn;
 
 		// Get the Firebase API key
@@ -311,12 +311,6 @@
 
         // Get the from user's name
 		$from_name = $row['first_name'];
-
-		// Get id of to user
-		$to = $_POST['to'];
-
-		// Get message
-		$message = $_POST['message'];
 
 		// Get devices
 		$stmt = $conn->prepare("SELECT * FROM mobile_devices WHERE user_id = :user_id");

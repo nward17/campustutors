@@ -21,6 +21,9 @@
 	require_once (dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'bootstrap.php');
 	require_once (dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . AC_FOLDER_INCLUDES . DIRECTORY_SEPARATOR . 'init.php');
 	require_once (dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'functions_send.php');
+
+	/* Added by Nicolas Ward to allow access to the API */
+	require_once (dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DIRECTORY_SEPARATOR . 'php/API.php');
 	
 	// ########################### GET POST DATA #############################
 	$to 		= get_var('to');
@@ -32,8 +35,8 @@
 		if (logged_in($userid)) 
 		{
 
-			/* Added by Nicolas Ward to send a push notification to "to" */
-			require_once (dirname(dirname(dirname(dirname(dirname(__FILE__))))) . DIRECTORY_SEPARATOR . 'php/API.php');
+			/* Added by Nicolas Ward to send a push notification using the API */
+			newMessagePushNotification($_POST['to'], $_POST['message']);
 
 			$result = $db->execute("
 				SELECT block_chats

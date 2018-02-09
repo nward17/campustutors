@@ -36,7 +36,7 @@
 		{
 
 			/* Added by Nicolas Ward to send a push notification using the API */
-			newMessagePushNotification($_POST['to'], $_POST['message']);
+			//newMessagePushNotification($_POST['to'], $_POST['message']);
 
 			$result = $db->execute("
 				SELECT block_chats

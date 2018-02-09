@@ -1,5 +1,8 @@
 <?php
 
+	error_reporting(E_ALL);
+	ini_set('display_errors', 'On');
+
 	/* Added by Nicolas Ward so we can add the post action */
 	session_start();
 

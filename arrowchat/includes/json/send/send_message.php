@@ -26,6 +26,8 @@
 	$to 		= get_var('to');
 	$message 	= get_var('message');
 
+	print_r($_POST);
+
 	// ######################### START POST MESSAGE ##########################
 	if (!empty($_POST['to']) AND !empty($_POST['message'])) 
 	{
@@ -33,7 +35,6 @@
 		{
 
 			/* Added by Nicolas Ward to send a push notification to "to" */
-			print_r($_POST);
 			include '../../../../php/API.php';
 
 			$result = $db->execute("

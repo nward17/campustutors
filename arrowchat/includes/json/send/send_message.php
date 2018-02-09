@@ -35,8 +35,16 @@
 		if (logged_in($userid)) 
 		{
 
+			ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+echo 'hi';
+
 			/* Added by Nicolas Ward to send a push notification using the API */
-			//newMessagePushNotification($_POST['to'], $_POST['message']);
+			newMessagePushNotification($_POST['to'], $_POST['message']);
+
+			echo 'hi';
 
 			$result = $db->execute("
 				SELECT block_chats

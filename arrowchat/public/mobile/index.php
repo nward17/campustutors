@@ -53,6 +53,20 @@
     	<script>
     		jQuery(window).load(function() {
 
+    			// Check for active tutoring sessions
+    			jQuery.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "../../php/API.php",
+                    cache : false,
+                    data: {action: "checkForSessions"},
+                    success: function(numberOfSessions) {
+                    	if (numberOfSessions == 0) {
+                    		jQuery("#buddylist-container-recent").append('<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c" style="border-bottom: 0px;"><div class="ui-btn-inner ui-li"><div class="ui-btn-text" id="arrowchat_userlist_2"><div class="mobile_avatar"></div><span class="list_name">No active tutoring sessions found.</span></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span></div></li>');
+                    	}
+               		}
+            	});
+
     			// Popup confirmation on session action
     			jQuery(".session-action").click(function() {
     				var sessionAction = jQuery(this).attr("id");

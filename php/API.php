@@ -20,6 +20,7 @@
 	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
 	        case 'insertDeviceID' : insertDeviceID(); break;
 	        case 'updateDeviceID' : updateDeviceID(); break;
+	        case 'checkForSessions' : checkForSessions(); break;
 	    }
 	}
 
@@ -351,4 +352,23 @@
 		curl_setopt($ch,CURLOPT_POSTFIELDS, json_encode($fields));
 		$result = curl_exec($ch);
 		curl_close($ch);
+	}
+
+	// Check if the current user has any active sessions
+	function checkForSessions() {
+		global $conn;
+
+		// Get id of current user
+		$user_id = $_SESSION['id'];
+
+		// Check for active sessions
+		$stmt = $conn->prepare("SELECT id FROM requests WHERE (tutor_id = :user_id OR tutee_id = :user_id) AND (status = 0 OR status = 1)");
+        $stmt->execute(array(':user_id' => $user_id));
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($rows) > 0) {
+        	echo count($rows);
+        } else {
+        	echo 0;
+        }
 	}

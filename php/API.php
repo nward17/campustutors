@@ -19,7 +19,6 @@
 	        case 'updateSession' : updateSession(); break;
 	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
 	        case 'insertDeviceID' : insertDeviceID(); break;
-	        case 'updateDeviceID' : updateDeviceID(); break;
 	        case 'checkForSessions' : checkForSessions(); break;
 	    }
 	}
@@ -271,26 +270,19 @@
 	function insertDeviceID() {
 		global $conn;
 
-		// Get the device id
-		$device_id = $_POST['deviceID'];
-
-		// Insert the id
-		$stmt = $conn->prepare("INSERT INTO mobile_devices (device_id) VALUES (:device_id)");
-		$stmt->execute(array(':device_id' => $device_id));
-	}
-
-	// Update the device ID of the Android or iOS device to include the user id
-	function updateDeviceID() {
-		global $conn;
-
 		// Get id of current user
 		$user_id = $_POST['userID'];
 
 		// Get the device id
 		$device_id = $_POST['deviceID'];
 
-		// Update the device with the user id
-		$stmt = $conn->prepare("UPDATE mobile_devices SET user_id = :user_id WHERE device_id = :device_id");
+		// Delete all devices for user (could be an old device, app reinstall?)
+		// Even if it isn't a new device, we delete it and insert it again regardless
+		$stmt = $conn->prepare("DELETE FROM mobile_devices WHERE user_id = :user_id");
+		$stmt->execute(array(':user_id' => $user_id));
+
+		// Insert the device id and user id if it doesn't exist, otherwise update existing device id with user id
+		$stmt = $conn->prepare("INSERT INTO mobile_devices (user_id, device_id) VALUES (:user_id, :device_id) ON DUPLICATE KEY UPDATE user_id = IF(VALUES(user_id) = 0, user_id, VALUES(user_id))");
 		$stmt->execute(array(':user_id' => $user_id, ':device_id' => $device_id));
 	}
 

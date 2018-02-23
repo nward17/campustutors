@@ -68,15 +68,6 @@
             });
             /* End Credit */
 
-            // Call Android function to update device id
-            function updateDevice(userID) {
-                if (typeof app !== 'undefined') {
-                    // User is using an Android device
-                    app.updateDevice(userID);
-                }
-                return false;
-            }
-
             // Disable the snapper on the login page
             snapper.disable();
 
@@ -97,11 +88,6 @@
                     type: "POST",
                     success: function (response) {
                         if (response != "failure") {
-                            var userID = response;
-
-                            // Assign user id to device
-                            updateDevice(userID);
-
                             window.location.href = "index.php";
                         } else if (response == "failure") {
                             $("#invalidLogin").show();

@@ -44,3 +44,11 @@
         </p>
     </div>
 </div>
+
+<script>
+    // Assign latest Android device ID to user
+    if (typeof app !== 'undefined') {
+        var userID = "<?php echo $_SESSION['id']; ?>";
+        app.insertDeviceID(userID);
+    }
+</script>

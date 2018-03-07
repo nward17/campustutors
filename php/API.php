@@ -7,6 +7,8 @@
 
 	    $action = $_POST['action'];
 	    switch($action) {
+	    	case 'getUniversities' : getUniversities(); break;
+	    	case 'register' : register(); break;
 	    	case 'signIn' : signIn(); break;
 	        case 'getUser' : getUser(); break;
 	        case 'changeUserRate' : changeUserRate(); break;
@@ -21,6 +23,32 @@
 	        case 'insertDeviceID' : insertDeviceID(); break;
 	        case 'checkForSessions' : checkForSessions(); break;
 	    }
+	}
+
+	function register() {
+		global $conn;
+
+		// Stop MySQL injection
+		$university_id = stripslashes($_POST['universityID']);
+		$email = stripslashes($_POST['email']);
+		$password = password_hash(stripslashes($_POST['password']), PASSWORD_DEFAULT);
+		$first_name = stripslashes($_POST['firstName']);
+		$last_name = stripslashes($_POST['lastName']);
+
+		// Check for active sessions
+		$stmt = $conn->prepare("SELECT id FROM users WHERE email = :email");
+        $stmt->execute(array(':email' => $email));
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($rows) > 0) {
+        	// Account already exists for the email
+        	echo count($rows);
+        } else {
+        	// Insert the account
+        	$stmt = $conn->prepare("INSERT INTO users (universities_id, email, password, first_name, last_name, account_creation) VALUES (:universities_id, :email, :password, :first_name, :last_name, NOW())");
+	    	$stmt->execute(array(':universities_id' => $university_id, ':email' => $email, ':password' => $password, ':first_name' => $first_name, ':last_name' => $last_name));
+        	echo 0;
+        }
 	}
 
 	function signIn() {
@@ -80,6 +108,16 @@
 		// Update the user's rate
 		$stmt = $conn->prepare("UPDATE users SET hourly_rate = :hourly_rate WHERE email = :email");
         $stmt->execute(array(':email' => $email, ':hourly_rate' => $new_rate));
+	}
+
+	function getUniversities() {
+		global $conn;
+
+		// Grab list of universities
+		$stmt = $conn->prepare("SELECT id, name, abbreviation FROM universities");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($rows);
 	}
 
 	function getCourses() {

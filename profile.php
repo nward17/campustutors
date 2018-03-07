@@ -12,27 +12,27 @@
             <div class="sidebar-header">
                 <a href="#" class="sidebar-logo" style="background-image: url(images/profiles/<?php echo $_SESSION['image']; ?>);"></a>
                 <span class="sidebar-message">Welcome back, <?php echo $_SESSION['first_name']; ?>!</span>
-                <a href="#" class="sidebar-close"><i class="fa fa-times"></i></a>
+                <a href="#" class="sidebar-close"><i class="fas fa-times"></i></a>
             </div>
             <div class="sidebar-breadcrumb">
                 Navigation
             </div>         
             <ul class="sidebar-menu">
-                <li><a href="index.php"><i class="fa fa-home"></i>Find a Tutor<i class="fa fa-last fa-circle"></i></a></li>
-                <li><a href="arrowchat/mobile/"><i class="fa fa-envelope"></i>Messages<i class="fa fa-last fa-circle"></i></a></li>
-                <li><a href="profile.php"><i class="fa fa-user"></i>Edit Profile<i class="fa fa-last fa-circle"></i></a></li>
-                <li><a href="php/signout.php"><i class="fa fa-sign-out"></i>Sign Out<i class="fa fa-last fa-circle"></i></a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i>Find a Tutor<i class="fas fa-last fa-circle"></i></a></li>
+                <li><a href="arrowchat/mobile/"><i class="fas fa-envelope"></i>Messages<i class="fas fa-last fa-circle"></i></a></li>
+                <li><a href="profile.php"><i class="fas fa-user"></i>Edit Profile<i class="fas fa-last fa-circle"></i></a></li>
+                <li><a href="php/signout.php"><i class="fas fa-sign-out-alt"></i>Sign Out<i class="fas fa-last fa-circle"></i></a></li>
             </ul>
         </div>
     </div>
     
     <div id="content" class="snap-content splash">
         <div class="header">
-            <a href="#" class="open-nav"><i class="fa fa-navicon hamburger-icon"></i></a>
+            <a href="#" class="open-nav"><i class="fas fa-bars hamburger-icon"></i></a>
             <div style="text-align: center;">
                 <a href="#" class="header-logo"></a>
                 <a href="arrowchat/mobile/" class="header-messages">
-                    <i class="fa fa-comment" style="margin-top: 15px;"></i>
+                    <i class="fas fa-comment" style="margin-top: 15px;"></i>
                     <span class="notification"></span>
                 </a>
             </div>
@@ -54,9 +54,9 @@
                             </div>
                         </center>
                         <br>
-                        <p><i class="fa fa-usd"></i> <input id="rate" type="number" min="0" max="50"> /hour</p>
-                        <p><i class="fa fa-university"></i> <span id="universityName"></span></p>
-                        <p><i class="fa fa-map-marker"></i> <span id="universityLocation"></span></p>
+                        <p><i class="fas fa-dollar-sign"></i> <input id="rate" type="number" min="0" max="50"> /hour</p>
+                        <p><i class="fas fa-university"></i> <span id="universityName"></span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span id="universityLocation"></span></p>
                         <p style="height: 200px;">
                             <span id="tutor-text">I can tutor in...</span>
                             <span class="search-course-wrapper">

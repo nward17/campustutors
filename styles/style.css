@@ -1063,7 +1063,7 @@ fieldset[disabled] .btn-login.active {
 
 /* Sign In Page */
 
-#invalidLogin, #passwordMatch {
+#invalidLogin, #accountExists {
 	color: red;
 	display: none;
 	font-size: 12px;
@@ -1073,7 +1073,7 @@ fieldset[disabled] .btn-login.active {
 	cursor: pointer;
 }
 
-#email, #password, #confirmPassword {
+.mobileInput {
 	border: 0 !important;
   	outline: 0 !important;
   	background: transparent !important;

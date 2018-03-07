@@ -10,7 +10,7 @@
     <title>CampusTutors | The Uber of Tutoring</title>
 
     <link href="styles/framework.css"                rel="stylesheet" type="text/css">
-    <link href="styles/font-awesome.css"             rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link href="styles/animate.css"                  rel="stylesheet" type="text/css">
     <link href="styles/bootstrap.min.css"            rel="stylesheet" type="text/css">
     <link href="styles/easy-autocomplete.css"        rel="stylesheet" type="text/css">

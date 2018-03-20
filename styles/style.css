@@ -851,15 +851,18 @@ fieldset[disabled] .btn-login.active {
 }
 
 #rate {
-  border: 0;
-  outline: 0;
-  background: transparent;
-  border-bottom: 1px solid #30ABDF;
-  display: inline;
-  width: 60px;
-  text-align: center;
-  height: 10px;
-  margin-bottom: -10px;
+  	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid #30ABDF;
+	width: 60px;
+	text-align: center;
+	font-size: 10pt;
+	display: inline;
+
+	/* Auto Complete Override */
+	box-shadow: none;
+	border-radius: 0px;
 }
 
 #sessions {
@@ -887,8 +890,6 @@ fieldset[disabled] .btn-login.active {
 	border-bottom: 1px solid #30ABDF;
 	width: 110px;
 	text-align: center;
-	height: 10px;
-	margin-bottom: -10px;
 	font-size: 10pt;
 	display: inline;
 
@@ -1079,6 +1080,8 @@ fieldset[disabled] .btn-login.active {
   	background: transparent !important;
   	border-bottom: 1px solid #30ABDF !important;
   	display: inline !important;
+  	box-shadow: none;
+	border-radius: 0px;
 }
 
 /* Easy Auto Complete Fixes */

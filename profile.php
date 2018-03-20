@@ -54,13 +54,13 @@
                             </div>
                         </center>
                         <br>
-                        <p><i class="fas fa-dollar-sign"></i> <input id="rate" type="number" min="0" max="50"> /hour</p>
+                        <p><i class="fas fa-dollar-sign"></i> <input id="rate" type="number" pattern="\d*"> /hour</p>
                         <p><i class="fas fa-university"></i> <span id="universityName"></span></p>
                         <p><i class="fas fa-map-marker-alt"></i> <span id="universityLocation"></span></p>
                         <p style="height: 200px;">
                             <span id="tutor-text">I can tutor in...</span>
                             <span class="search-course-wrapper">
-                                <input type="text" class="search-course" id="searchCourseProfile" placeholder="course...">
+                                <input type="text" class="search-course" id="searchCourseProfile" placeholder="Type a course...">
                             </span>
                             <textarea id="courseTags"></textarea>
                         </p>

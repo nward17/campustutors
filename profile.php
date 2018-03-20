@@ -152,7 +152,7 @@
                         data: contacts,
                         getValue: "course",
                         list: {
-                            maxNumberOfElements: 1000,
+                            maxNumberOfElements: 100,
                             match: {
                                 enabled: true
                             },

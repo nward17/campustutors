@@ -84,9 +84,9 @@
                 cache : false,
                 data: {action: "getCourses"},
                 success: function(resp) {
-                    var contacts = JSON.parse(resp);
+                    var courses = JSON.parse(resp);
                     var options = {
-                        data: contacts,
+                        data: courses,
                         getValue: "course",
                         list: {
                             maxNumberOfElements: 100,
@@ -148,6 +148,26 @@
                         }
                     };
                     $(".search-course").easyAutocomplete(options);
+
+                    // Sort the results based on the search term
+                    $("#searchCourseHome").on("input", function() {
+
+                        // Convert search to lowercase
+                        var searchText = $(this).val().toLowerCase();
+                        var courseList = options.data;
+
+                        courseList.sort((a, b) => {
+                            // Convert to lowercase
+                            var course1 = a.course.toLowerCase();
+                            var course2 = b.course.toLowerCase();
+
+                            if (course1.startsWith(searchText) && course2.startsWith(searchText)) return course1.localeCompare(course2);
+                            else if (course1.startsWith(searchText)) return -1;
+                            else if (course2.startsWith(searchText)) return 1;
+                             
+                            return course1.localeCompare(course2);
+                        });
+                    });
                 }
             });
         });

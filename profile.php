@@ -147,9 +147,9 @@
                 cache : false,
                 data: {action: "getCoursesForProfile"},
                 success: function(resp) {
-                    var contacts = JSON.parse(resp);
+                    var courses = JSON.parse(resp);
                     var options = {
-                        data: contacts,
+                        data: courses,
                         getValue: "course",
                         list: {
                             maxNumberOfElements: 100,

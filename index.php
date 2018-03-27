@@ -18,7 +18,8 @@
                 Navigation
             </div>
             <ul class="sidebar-menu">
-                <li><a href="index.php"><i class="fas fa-home"></i>Find a Tutor<i class="fas fa-last fa-circle"></i></a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i>Search for a Tutor<i class="fas fa-last fa-circle"></i></a></li>
+                <li><a href="map.php"><i class="fas fa-map-marker-alt"></i>Locate a Tutor<i class="fas fa-last fa-circle"></i></a></li>
                 <li><a href="arrowchat/mobile/"><i class="fas fa-envelope"></i>Messages<i class="fas fa-last fa-circle"></i></a></li>
                 <li><a href="profile.php"><i class="fas fa-user"></i>Edit Profile<i class="fas fa-last fa-circle"></i></a></li>
                 <li><a href="php/signout.php"><i class="fas fa-sign-out-alt"></i>Sign Out<i class="fas fa-last fa-circle"></i></a></li>
@@ -90,9 +91,6 @@
                         getValue: "course",
                         list: {
                             maxNumberOfElements: 100,
-                            match: {
-                                enabled: true
-                            },
                             showAnimation: {
                                 type: "slide"
                             },

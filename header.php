@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png"/>
 
-    <title>CampusTutors | The Uber of Tutoring</title>
+    <title>CampusTeachers | The Uber of Tutoring</title>
 
     <link href="styles/framework.css"                rel="stylesheet" type="text/css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -27,15 +27,15 @@
     <script type="text/javascript" src="scripts/custom.js"></script>
 
     <!-- Arrowchat -->
-    <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="/campustutors/arrowchat/external.php?type=css" charset="utf-8" />
-    <script type="text/javascript" src="/campustutors/arrowchat/includes/js/jquery.js"></script>
-    <script type="text/javascript" src="/campustutors/arrowchat/includes/js/jquery-ui.js"></script>
+    <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="/campusteachers/arrowchat/external.php?type=css" charset="utf-8" />
+    <script type="text/javascript" src="/campusteachers/arrowchat/includes/js/jquery.js"></script>
+    <script type="text/javascript" src="/campusteachers/arrowchat/includes/js/jquery-ui.js"></script>
 </head>
 <body>
 
 <!-- Arrowchat -->
-<script type="text/javascript" src="/campustutors/arrowchat/external.php?type=djs" charset="utf-8"></script>
-<script type="text/javascript" src="/campustutors/arrowchat/external.php?type=js" charset="utf-8"></script>
+<script type="text/javascript" src="/campusteachers/arrowchat/external.php?type=djs" charset="utf-8"></script>
+<script type="text/javascript" src="/campusteachers/arrowchat/external.php?type=js" charset="utf-8"></script>
     
 <div id="preloader">
 	<div id="status">

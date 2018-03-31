@@ -21,9 +21,9 @@
 	 * a new database for ArrowChat.
 	*/
 	define('DB_SERVER','localhost'); 
-	define('DB_USERNAME','campustutors'); 
+	define('DB_USERNAME','campusteachers'); 
 	define('DB_PASSWORD','@Tutor!'); 
-	define('DB_NAME','campustutors');	
+	define('DB_NAME','campusteachers');	
 		
 	/**
 	 * The table prefix can be left blank. A quick example of what you should input here:

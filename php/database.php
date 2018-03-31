@@ -10,9 +10,9 @@
 
         // Credentials for MySQL server
         $host = 'localhost';
-        $username = 'campustutors';
+        $username = 'campusteachers';
         $password = '@Tutor!';
  
  		// Set up the connection object for MySQL
-        $conn = new PDO("mysql:host=$host;dbname=campustutors", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $conn = new PDO("mysql:host=$host;dbname=campusteachers", $username, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }

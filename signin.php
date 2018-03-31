@@ -133,6 +133,7 @@
                     data: {action: 'register', firstName: firstName, lastName: lastName , universityID: universityID, email: email, password: password},
                     type: "POST",
                     success: function (response) {
+                        console.log(response)
                         if (response == 0) {
                             window.location.reload();
                         } else {

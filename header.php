@@ -27,15 +27,15 @@
     <script type="text/javascript" src="scripts/custom.js"></script>
 
     <!-- Arrowchat -->
-    <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="/campusteachers/arrowchat/external.php?type=css" charset="utf-8" />
-    <script type="text/javascript" src="/campusteachers/arrowchat/includes/js/jquery.js"></script>
-    <script type="text/javascript" src="/campusteachers/arrowchat/includes/js/jquery-ui.js"></script>
+    <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="arrowchat/external.php?type=css" charset="utf-8" />
+    <script type="text/javascript" src="arrowchat/includes/js/jquery.js"></script>
+    <script type="text/javascript" src="arrowchat/includes/js/jquery-ui.js"></script>
 </head>
 <body>
 
 <!-- Arrowchat -->
-<script type="text/javascript" src="/campusteachers/arrowchat/external.php?type=djs" charset="utf-8"></script>
-<script type="text/javascript" src="/campusteachers/arrowchat/external.php?type=js" charset="utf-8"></script>
+<script type="text/javascript" src="arrowchat/external.php?type=djs" charset="utf-8"></script>
+<script type="text/javascript" src="arrowchat/external.php?type=js" charset="utf-8"></script>
     
 <div id="preloader">
 	<div id="status">

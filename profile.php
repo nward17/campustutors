@@ -33,7 +33,7 @@
             <div style="text-align: center;">
                 <a href="#" class="header-logo"></a>
                 <a href="arrowchat/mobile/" class="header-messages">
-                    <i class="fas fa-comment" style="margin-top: 15px;"></i>
+                    <i class="fas fa-comment" style="margin-top: 18px;"></i>
                     <span class="notification"></span>
                 </a>
             </div>

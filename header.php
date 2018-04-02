@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png"/>
 
-    <title>CampusTeachers | The Uber of Tutoring</title>
+    <title>CampusTeachers | On-Demand Tutoring</title>
 
     <link href="styles/framework.css"                rel="stylesheet" type="text/css">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">

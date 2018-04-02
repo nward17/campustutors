@@ -5,7 +5,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="shortcut icon" type="image/png" href="images/favicon-16x16.png"/>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
 
     <title>CampusTeachers | On-Demand Tutoring</title>
 

@@ -132,7 +132,7 @@
                                                         '<br>' +
                                                         '<div id="sessions" class="tutorSessions">' + tutor.completed_sessions + ' sessions</div>' +
                                                         '<p class="tutorRateContainer"><i class="fas fa-usd"></i> <span class="tutorRate">' + tutor.hourly_rate + '</span> /hour</p>' +
-                                                        '<button class="btn-login" style="font-size: 10pt; font-weight: bold; width: 250px; text-align: center;" type="button" onclick="requestTutor(' + tutor.id + ', \'' + courseID + '\', \'' + courseTag + '\');">Request</button>' +
+                                                        '<button class="btn-login" style="font-size: 10pt; font-weight: bold; width: 125px; text-align: center;" type="button" onclick="requestTutor(' + tutor.id + ', \'' + courseID + '\', \'' + courseTag + '\');">Request</button>' +
                                                     '</div>' +
                                                 '</div>' +
                                             '</div>' +

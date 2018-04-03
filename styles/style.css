@@ -311,6 +311,7 @@ body::-webkit-scrollbar-track {
 	z-index:9999999;
 	width:100%;
 	background-color:#2d3033;
+	height: 65px;
 }
 
 .header .open-nav{
@@ -761,7 +762,7 @@ fieldset[disabled] .btn-login.active {
 }
 
 .requestsContainer {
-	height: 500px;
+	height: 100%;
 	margin-top: -150px;
 }
 

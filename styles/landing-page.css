@@ -14,9 +14,10 @@
  */
 
 html, body {
-  margin: 0; height: 100%; overflow: hidden
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
-
 
 body {
   background: linear-gradient(rgba(99, 177, 242, 0.5),rgba(99, 177, 242, 0.5)), url('../images/background.png') no-repeat center center fixed;
@@ -24,6 +25,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  position: relative;
 }
 
 /* Font Smoothing */

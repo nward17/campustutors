@@ -13,15 +13,17 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 
+html, body {
+  margin: 0; height: 100%; overflow: hidden
+}
+
+
 body {
   background: linear-gradient(rgba(99, 177, 242, 0.5),rgba(99, 177, 242, 0.5)), url('../images/background.png') no-repeat center center fixed;
-  height: 1px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
-  margin:0;min-height:100vh;
 }
 
 /* Font Smoothing */

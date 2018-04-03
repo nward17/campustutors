@@ -13,13 +13,15 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 
- body {
+body {
   background: linear-gradient(rgba(99, 177, 242, 0.5),rgba(99, 177, 242, 0.5)), url('../images/background.png') no-repeat center center fixed;
   height: 1px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+  margin:0;min-height:100vh;
 }
 
 /* Font Smoothing */
@@ -120,50 +122,44 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, .btn-s
   width: 100%;
   height: 100%;
 }
-.landing-page .parallax .parallax-background img {
-    /*
-    width: 100%;
-    height: auto;
-    */
+.landing-page .logos {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.landing-page .logos ul{
+  display: block;
+  width: 100%;
+  margin: 0px auto;
+  padding-top: 48px;
+}
+.landing-page .logos li{
+  display: inline-block;
+  margin: 0 17px;
+}
+
+@media (max-width: 767px){
+  /* Added by Nicolas Ward */
+  .phone {
+    width: 210px !important;
+    height: 400px !important;
+    margin-top: -130px;
+    position: absolute;
+    left: 50%;
+    margin-left: -105px;
+    float: left !important;
   }
-  .landing-page .logos {
-    width: 100%;
-    margin: 0 auto;
+
+  .landing-page .wrapper{
     text-align: center;
   }
-  .landing-page .logos ul{
-    display: block;
-    width: 100%;
-    margin: 0px auto;
-    padding-top: 48px;
+  .landing-page .parallax .parallax-background img {
+    width: auto;
+    height: 100%;
   }
-  .landing-page .logos li{
-    display: inline-block;
-    margin: 0 17px;
-  }
-
-  @media (max-width: 767px){
-    /* Added by Nicolas Ward */
-    .phone {
-      width: 210px !important;
-      height: 400px !important;
-      margin-top: -130px;
-      position: absolute;
-      left: 50%;
-      margin-left: -105px;
-      float: left !important;
+  .landing-page .parallax .description{
+    margin-top: 15px;  }
+    .landing-page .parallax .buttons{
+      margin: 20px 0;
     }
-
-    .landing-page .wrapper{
-      text-align: center;
-    }
-    .landing-page .parallax .parallax-background img {
-      width: auto;
-      height: 100%;
-    }
-    .landing-page .parallax .description{
-      margin-top: 15px;  }
-      .landing-page .parallax .buttons{
-        margin: 20px 0;
-      }
-  }
+}

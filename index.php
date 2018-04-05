@@ -102,6 +102,9 @@
                                 var courseID = $(".search-course").getSelectedItemData().id;
                                 var courseTag = $(".search-course").getSelectedItemData().tag;
 
+                                // Set value of input box to course tag
+                                $("#searchCourseHome").val(courseTag);
+
                                 $.ajax({
                                     type: "POST",
                                     dataType: "text",

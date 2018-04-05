@@ -814,24 +814,44 @@ fieldset[disabled] .btn-login.active {
 
 /* Profile Page */
 
+.file-upload {
+    display: none !important;
+}
+.p-image {
+  position: absolute;
+  top: 110px;
+  right: 158px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+
 .profile-image-container {
 	padding-bottom: 4px;
 }
 
 .profile-image {
+    display: inline-block;
     width: 125px;
     height: 125px;
-    background-size: cover;
-    background-repeat: no-repeat;
+    margin: 5px;
     background-position: center center;
+    background-size: cover;
     -webkit-border-radius: 99em;
     -moz-border-radius: 99em;
     border-radius: 99em;
     border: 5px solid #eee;
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
-    display: block;
-    max-width: 100%;
-    height: auto;
 }
 
 #fullName {

@@ -45,6 +45,11 @@
                         <center>
                             <div class="profile-image-container">
                                 <img class="profile-image" src="images/profiles/<?php echo $_SESSION['image']; ?>">
+
+                                <div class="p-image">
+                                    <i class="fa fa-camera upload-button"></i>
+                                    <input class="file-upload" type="file" accept="image/*"/>
+                                </div>
                             </div>
                             <br>
                             <h2><span id="fullName"></span></h2>
@@ -75,6 +80,37 @@
 <script type="text/javascript">
     (function($) {
         $(function() {
+
+            // Profile image upload
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('.profile-image').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+
+                    var formData = new FormData();
+                    formData.append('image', input.files[0]);
+                    formData.append('action', 'changeProfileImage');
+                    $.ajax({
+                        url: "php/API.php",
+                        data: formData,
+                        type: "POST",
+                        contentType: false, 
+                        processData: false,
+                        success: function(resp) {
+                            console.log(resp)
+                        }
+                    });
+                }
+            }
+            $(".file-upload").on('change', function(){
+                readURL(this);
+            });            
+            $(".upload-button").on('click', function() {
+               $(".file-upload").click();
+            });
 
             // Fix for mobile that scrolls the screen down so keyboard does not cover text input
             // TODO: Make global

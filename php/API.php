@@ -11,6 +11,7 @@
 	    	case 'register' : register(); break;
 	    	case 'signIn' : signIn(); break;
 	        case 'getUser' : getUser(); break;
+	        case 'changeProfileImage' : changeProfileImage(); break;
 	        case 'changeUserRate' : changeUserRate(); break;
 	        case 'getCourses' : getCourses(); break;
 	        case 'getCoursesForProfile' : getCoursesForProfile(); break;
@@ -94,6 +95,37 @@
         $stmt->execute(array(':email' => $email));
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($rows[0]);
+	}
+
+	function changeProfileImage() {
+		global $conn;
+
+		// Get the new profile image
+		$profile_image = $_FILES['image'];
+
+		// Get the user's email
+		$email = $_SESSION['email'];
+
+		$destination = '../images/profiles/';
+		$file_name = $email . '.' . strtolower(pathinfo($profile_image['name'], PATHINFO_EXTENSION));
+		$full_path = $destination . $file_name;
+
+		// Image is valid
+		if(getimagesize($profile_image["tmp_name"]) !== false) {
+			// Delete old profile picture
+			foreach (glob($destination . $email . '*.*') as $filename) {
+    			unlink($filename);
+			}
+
+			// Move the file to the profiles directory
+			move_uploaded_file($profile_image["tmp_name"], $full_path);
+		}
+
+		// Update the user's profile image
+		$stmt = $conn->prepare("UPDATE users SET image = :image WHERE email = :email");
+        if ($stmt->execute(array(':email' => $email, ':image' => $file_name))) {
+        	$_SESSION['image'] = $file_name;
+        }
 	}
 
 	function changeUserRate() {

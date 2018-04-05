@@ -76,7 +76,13 @@
         	$_SESSION['id'] = $user['id'];
         	$_SESSION['email'] = $user['email'];
         	$_SESSION['first_name'] = $user['first_name'];
-        	$_SESSION['image'] = $user['image'];
+
+        	// Image exists
+			if(getimagesize('../images/profiles/' . $user['image']) !== false) {
+				$_SESSION['image'] = $user['image'];
+			} else {
+				$_SESSION['image'] = 'placeholder.png';
+			}
 
         	echo $user['id'];
         } else {

@@ -818,9 +818,8 @@ fieldset[disabled] .btn-login.active {
     display: none !important;
 }
 .p-image {
-  position: absolute;
-  top: 110px;
-  right: 158px;
+  margin-top: -30px;
+  margin-left: 115px;
   color: #666666;
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 }

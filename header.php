@@ -15,7 +15,7 @@
     <link href="styles/bootstrap.min.css"            rel="stylesheet" type="text/css">
     <link href="styles/easy-autocomplete.css"        rel="stylesheet" type="text/css">
     <link href="styles/jquery.tag-editor.css"        rel="stylesheet" type="text/css">
-    <link href="styles/style.css?version=7"          rel="stylesheet" type="text/css">
+    <link href="styles/style.css?version=8"          rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/jqueryui.js"></script>

@@ -72,7 +72,9 @@
 								status = lang[241];
 							if (status == "busy")
 								status = lang[216];
-							a("#username-header").html('<div id="name-header">' + f.n + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+							// a("#username-header").html('<div id="name-header">' + f.n + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+							// Removing profile arrow by Nicolas Ward
+							a("#username-header").html('<div id="name-header">' + f.n + '</div><div id="status-header">' + status + '</div>');
 						}
                     })
                 }
@@ -1577,7 +1579,9 @@
 							status = lang[241];
 						if (status == "busy")
 							status = lang[216];
-						a("#username-header").html('<div id="name-header">' + uc_name[b] + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+						// a("#username-header").html('<div id="name-header">' + uc_name[b] + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+						// Removing profile arrow by Nicolas Ward
+						a("#username-header").html('<div id="name-header">' + uc_name[b] + '</div><div id="status-header">' + status + '</div>');
 						a('#page2').bind('pageshow',function(){document.title = uc_name[b]});
 					}
 					var tba = 0;
@@ -1615,7 +1619,9 @@
 						status = lang[241];
 					if (status == "busy")
 						status = lang[216];
-					a("#username-header").html('<div id="name-header">' + uc_name[b] + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+					// a("#username-header").html('<div id="name-header">' + uc_name[b] + '<span class="arrowchat_username_arrow"> </span></div><div id="status-header">' + status + '</div>');
+					// Removing profile arrow by Nicolas Ward
+					a("#username-header").html('<div id="name-header">' + uc_name[b] + '</div><div id="status-header">' + status + '</div>');
 					a('#page2').bind('pageshow',function(){document.title = uc_name[b]});
 					document.title = uc_name[b];
 				}

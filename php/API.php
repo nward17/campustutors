@@ -208,7 +208,7 @@
 		$email = $_SESSION['email'];
 
 		// Grab a list of tutors based on the course id
-		$stmt = $conn->prepare("SELECT id, first_name, image, rating, hourly_rate, completed_sessions FROM users WHERE FIND_IN_SET(:course_tag, course_tags) > 0 AND email != :email ORDER BY rating DESC");
+		$stmt = $conn->prepare("SELECT id, first_name, IFNULL(image, 'placeholder.png') as image, rating, hourly_rate, completed_sessions FROM users WHERE FIND_IN_SET(:course_tag, course_tags) > 0 AND email != :email ORDER BY rating DESC");
 		$stmt->execute(array(':email' => $email, ':course_tag' => $course_tag));
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($rows);

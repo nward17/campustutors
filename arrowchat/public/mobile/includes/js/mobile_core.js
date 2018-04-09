@@ -516,6 +516,9 @@
 			});
 		}
 		function setPrivateUserOptions(b) {
+			// Commented out by Nicolas Ward, no name popup
+			
+			/*
 			a('#username-header').unbind("click");
 			a('#username-header').click(function() {
 				a.mobile.changePage("#user-options", { transition: "slidedown", changeHash: true });
@@ -559,6 +562,7 @@
 					}, function () {});
 				});
 			});
+			*/
 		}
 		function addMessageToChatroom(b, c, d) {
 			var title = "",important = "", image_msg = "";

@@ -1,6 +1,7 @@
 /* Modifications by Nicolas Ward
-* Line 521
+* Line 527
 * Added classes for cancel session request, start session, and end session
+* Added classes for the rating popup when a session is completed
 */
 
 .arrowchat_message_wrapper {
@@ -601,6 +602,30 @@ input.mobile_search {
 	font-weight:normal;
 	font-size:15px;
 	margin-top:30px;
+}
+
+/* Rate tutor and tutee after a session */
+.rating {
+    width:300px;
+    height:50px;
+    margin-left: 50px;
+}
+.rating span {
+	float:left;
+	position:relative;
+}
+.rating span label {
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align:center;
+    color:#FFF;
+    background:#D6D6D6;
+    font-size:30px;
+    margin-right:2px;
+    line-height:30px;
+    border-radius:50%;
+    -webkit-border-radius:50%;
 }
 /* End of modifications by Nicolas Ward */
 

@@ -19,6 +19,7 @@
 	        case 'findTutors' : findTutors(); break;
 	        case 'requestTutor' : requestTutor(); break;
 	        case 'getSessionInformation' : getSessionInformation(); break;
+	        case 'updateTutorRating' : updateTutorRating(); break;
 	        case 'updateSession' : updateSession(); break;
 	        case 'checkForUnreadMessages' : checkForUnreadMessages(); break;
 	        case 'insertDeviceID' : insertDeviceID(); break;
@@ -274,6 +275,19 @@
         echo json_encode($rows[0]);
 	}
 
+	function updateTutorRating() {
+		global $conn;
+
+		// Get the tutors id
+		$tutor_id = $_POST['tutorID'];
+
+		// Get the rating
+		$rating = $_POST['rating'];
+
+		$stmt = $conn->prepare("UPDATE users SET rating = (((completed_sessions - 1) * rating) / (completed_sessions)) + (:rating / completed_sessions) WHERE id = :tutor_id");
+	    $stmt->execute(array(':rating' => $rating, ':tutor_id' => $tutor_id));
+	}
+
 	function updateSession() {
 		global $conn;
 
@@ -292,8 +306,22 @@
 		    case "start-session":
 		        $status = 1;
 		        break;
+			// Session is finished
 		    case "stop-session":
-		    	// Delete the chat between tutor and tutee
+
+				// Get the tutor for the session
+				$stmt = $conn->prepare("SELECT tutor_id FROM requests WHERE id = :session_id");
+		        $stmt->execute(array(':session_id' => $session_id));
+		        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		        // Get the tutor and tutee ids
+		        $tutor_id = $row['tutor_id'];
+
+		        // Increment the tutors number of completed sessions
+				$stmt = $conn->prepare("UPDATE users SET completed_sessions = (completed_sessions + 1) WHERE id = :tutor_id");
+        		$stmt->execute(array(':tutor_id' => $tutor_id));
+
+        		// Delete the chat between tutor and tutee
 		        deleteChat($session_id);
 		        $status = 2;
 		        break;

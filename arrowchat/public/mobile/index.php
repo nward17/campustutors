@@ -4,7 +4,7 @@
 	|| #################################################################### ||
 	|| #                             ArrowChat                            # ||
 	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
+	|| #    Copyright Â©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
 	|| # This file may not be redistributed in whole or significant part. # ||
 	|| # ---------------- ARROWCHAT IS NOT FREE SOFTWARE ---------------- # ||
 	|| #   http://www.arrowchat.com | http://www.arrowchat.com/license/   # ||
@@ -16,6 +16,7 @@
 	- Removed online users and idle users section, created current sessions section
 	- Added cancel session, start session, and stop session buttons
 	- Added AJAX to get and set session information
+	- Added the rating popup for when a session is completed
 	*/
 	
 	// ########################## INCLUDE BACK-END ###########################
@@ -39,8 +40,11 @@
 		
 		<link rel="apple-touch-icon" href="images/apple-touch-icon.png"/> 
 		<link rel="stylesheet" href="<?php echo $base_url; ?><?php echo AC_FOLDER_PUBLIC; ?>/mobile/includes/css/jquery-mobile.css" />
-		<link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="<?php echo $base_url; ?><?php echo AC_FOLDER_PUBLIC; ?>/mobile/includes/css/style.css?version=3" charset="utf-8" />
+		<link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="<?php echo $base_url; ?><?php echo AC_FOLDER_PUBLIC; ?>/mobile/includes/css/style.css?version=4" charset="utf-8" />
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+		<!-- Added Font-Awesome for star icon -->
+		<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 
 		<script type="text/javascript" src="<?php echo $base_url; ?><?php echo AC_FOLDER_INCLUDES; ?>/js/jquery.js"></script>
 		<script type="text/javascript" charset="utf-8" src="<?php echo $base_url; ?><?php echo AC_FOLDER_PUBLIC; ?>/mobile/includes/js/jquery-mobile.js"></script>
@@ -51,6 +55,9 @@
     <body>
 
     	<script>
+    		// Holds whether or not the current user is the tutor
+    		var isTutor;
+
     		jQuery(window).load(function() {
 
     			// Check for active tutoring sessions
@@ -92,20 +99,69 @@
 			        var sessionAction = jQuery(".session-action").attr("id");
 			        var sessionID = jQuery(".session-action").attr("data-session-id");
 
-			        jQuery.ajax({
+					jQuery.ajax({
 	                    type: "POST",
 	                    dataType: "text",
 	                    url: "../../php/API.php",
 	                    cache : false,
 	                    data: {action: "updateSession", sessionAction: sessionAction, sessionID: sessionID},
 	                    success: function(resp) {
-	                    	// If request is canceled or session is stopped, refresh the page
-	                    	if (sessionAction == "cancel-session" || sessionAction == "stop-session") {
-                				window.location = window.location.pathname;
+	                    	// If request is canceled, refresh the page
+	                    	if (sessionAction == "cancel-session") {
+	                    		window.location = window.location.pathname;
+	                    	// Otherwise open rating popup
+                			} else if (sessionAction == "stop-session") {
+                				if (isTutor == 'No') {
+			                		jQuery("#popupRating").popup("open");
+			                	} else {
+			                		window.location = window.location.pathname;
+			                	}
                 			}
 	                    }
                 	});
 			    });
+			});
+
+			jQuery(document).ready(function() {
+
+			    jQuery('.rating input').click(function () {
+			        jQuery(".rating span").removeClass('checked');
+			        jQuery(this).parent().addClass('checked');
+			    });
+
+			    jQuery('input:radio').change(function() {
+			    	// otherUserID will always be the tutor's id because
+			    	// only tutee's get the rating popup when a session is completed
+			    	var otherUserID = jQuery(".chat_user_content").attr('id').split("_")[2];
+			        var rating = this.value;
+
+			        jQuery.ajax({
+	                    type: "POST",
+	                    dataType: "text",
+	                    url: "../../php/API.php",
+	                    cache : false,
+	                    data: {action: "updateTutorRating", tutorID: otherUserID, rating: rating},
+	                    success: function(resp) {
+	                    	window.location = window.location.pathname;
+	                    }
+                	});
+			   	});
+
+			    jQuery(".rating span").hover(
+					function() {
+						var hoveredStar = jQuery(this).find("input").val();
+						jQuery(".rating span input").each(function(index) {
+							var iteratedStar = jQuery(this).val();
+							if (iteratedStar <= hoveredStar) {
+								jQuery(this).parent().find("label").css({"color": "#ffd700"});
+							}
+						});
+					}, function() {
+						jQuery(".rating span label").each(function(index) {
+					 		jQuery(this).css({"color": "white"});
+						});
+					}
+				);
 			});
 
     		// On chat open, check the session status
@@ -130,7 +186,7 @@
                     success: function(resp) {
                     	var session = JSON.parse(resp);
                     	var sessionStatus = session['status'];
-                    	var isTutor = session['tutor'];
+                    	isTutor = session['tutor'];
 
                     	jQuery(".session-action").attr("data-session-id", session['id']);
 
@@ -149,9 +205,18 @@
                     	} else if (sessionStatus == 1) {
                     		jQuery(".session-action").attr("id", "stop-session");
                     		jQuery(".session-action").html("Stop Session");
-                    	} else if (sessionStatus == 2 || sessionStatus == 3) {
-                    		// Session was stopped or the request was canceled
+                    	// Request was canceled
+                    	} else if (sessionStatus == 3) {
+                    		// Refresh the page
                     		window.location = window.location.pathname;
+                    	// Session has been stopped
+                    	} else if (sessionStatus == 2) {
+                    		// If user is the tutee then open rating popup
+                    		if (isTutor == 'No') {
+		                		jQuery("#popupRating").popup("open");
+		                	} else {
+		                		window.location = window.location.pathname;
+		                	}
                     	}
 
                     	// Check for session update every 2 seconds
@@ -171,18 +236,9 @@
 				<a data-role="button" id="home-button" data-iconshadow="false" data-iconpos="notext" data-ajax="false" data-theme="b" href="<?php echo $home_url; ?>" data-shadow="false" data-corners="false">
 					Home
 				</a>
-
-				<!--<a id="settings-button" data-iconpos="notext" data-iconshadow="false" data-theme="b" data-rel="dialog" data-transition="slidedown" href="#settings-page" data-icon="gear" data-shadow="false" data-corners="false"></a>-->
             </div>
             <div data-role="content">
-            	<!--
-				<ul id="buddylist-container-chatroom" data-role="listview" data-divider-theme="c" data-inset="false"></ul>
-				-->
 				<ul id="buddylist-container-recent" data-role="listview" data-divider-theme="c" data-inset="false"></ul>
-				<!--
-                <ul id="buddylist-container-available" data-role="listview" data-divider-theme="c" data-inset="false"></ul>
-				<ul id="buddylist-container-away" data-role="listview" data-divider-theme="c" data-inset="false"></ul>
-				-->
             </div>
         </div>
 		<div data-role="page" id="page2">
@@ -206,9 +262,23 @@
 				<!-- Confirmation Popup for Session Actions -->
 				<div data-role="popup" id="popupConfirmation" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width: 400px;">
 				    <div role="main" class="ui-content">
-				        <h3 class="ui-title">Are you sure you want to start this session?</h3>
+				        <h3 class="ui-title"></h3>
 				        <a href="#" class="ui-btn ui-corner-all ui-btn-inline ui-btn-b" style="color: #0084FF;" data-rel="back">Cancel</a>
 				        <a href="#" id="confirmSessionAction" class="ui-btn ui-corner-all ui-btn-inline ui-btn-b" style="color: #0084FF;" data-rel="back" data-transition="flow">Yes</a>
+				    </div>
+				</div>
+
+				<!-- Rating Popup for Sessions -->
+				<div data-role="popup" id="popupRating" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width: 300px;">
+				    <div role="main" class="ui-content">
+				        <h3 class="ui-title">How was your tutoring session?</h3>
+				        <div class="rating">
+				        	<span><input type="radio" name="rating" id="str1" value="1"><label for="str1" class="fas fa-star"></label></span>
+				        	<span><input type="radio" name="rating" id="str2" value="2"><label for="str2" class="fas fa-star"></label></span>
+				        	<span><input type="radio" name="rating" id="str3" value="3"><label for="str3" class="fas fa-star"></label></span>
+				        	<span><input type="radio" name="rating" id="str4" value="4"><label for="str4" class="fas fa-star"></label></span>
+				        	<span><input type="radio" name="rating" id="str5" value="5"><label for="str5" class="fas fa-star"></label></span>
+						</div>
 				    </div>
 				</div>
 

@@ -1,11 +1,15 @@
 <?php
+	// Start the PHP session
 	session_start();
 
+	// Only run the API if POST data exists
 	if(isset($_POST) && !empty($_POST)) {
 		define('access', true);
 		include('database.php');
 
 	    $action = $_POST['action'];
+
+	    // Call correct API function depending on POST
 	    switch($action) {
 	    	case 'getUniversities' : getUniversities(); break;
 	    	case 'register' : register(); break;
@@ -27,6 +31,7 @@
 	    }
 	}
 
+	// Register a new user
 	function register() {
 		global $conn;
 
@@ -53,6 +58,7 @@
         }
 	}
 
+	// Authenticate and sign in a user
 	function signIn() {
 		global $conn;
 
@@ -91,6 +97,7 @@
         }
 	}
 
+	// Get user information for the edit profile page
 	function getUser() {
 		global $conn;
 
@@ -104,6 +111,7 @@
         echo json_encode($rows[0]);
 	}
 
+	// Change a user's profile picture
 	function changeProfileImage() {
 		global $conn;
 
@@ -135,6 +143,7 @@
         }
 	}
 
+	// Change the hourly rate of a user
 	function changeUserRate() {
 		global $conn;
 
@@ -149,6 +158,7 @@
         $stmt->execute(array(':email' => $email, ':hourly_rate' => $new_rate));
 	}
 
+	// Get a list of universities for the registration page
 	function getUniversities() {
 		global $conn;
 
@@ -159,6 +169,7 @@
         echo json_encode($rows);
 	}
 
+	// Get a list of courses so a user can search for a tutor by course
 	function getCourses() {
 		global $conn;
 
@@ -172,6 +183,7 @@
         echo json_encode($rows);
 	}
 
+	// Get a list of courses that a user can tutor in
 	function getCoursesForProfile() {
 		global $conn;
 
@@ -185,6 +197,7 @@
         echo json_encode($rows);
 	}
 
+	// Update the courses that a user wants to tutor in
 	function updateCourseTags() {
 		global $conn;
 
@@ -199,6 +212,7 @@
         $stmt->execute(array(':email' => $email, ':course_tags' => $course_tags));
 	}
 
+	// Get a list of tutors based on a course for the home page
 	function findTutors() {
 		global $conn;
 
@@ -215,6 +229,7 @@
         echo json_encode($rows);
 	}
 
+	// Create a tutoring session between a tutee and tutor
 	function requestTutor() {
 		global $conn;
 
@@ -244,6 +259,7 @@
         echo $row_count;
 	}
 
+	// Get tutoring session information such as the status and who is the tutor
 	function getSessionInformation() {
 		global $conn;
 
@@ -275,6 +291,7 @@
         echo json_encode($rows[0]);
 	}
 
+	// Update the rating for a tutor after a session has ended
 	function updateTutorRating() {
 		global $conn;
 
@@ -288,6 +305,11 @@
 	    $stmt->execute(array(':rating' => $rating, ':tutor_id' => $tutor_id));
 	}
 
+	// Update the status of a tutoring session
+	// status of 0 = session has been requested
+	// status of 1 = session has started
+	// status of 2 = session has ended
+	// status of 3 = session was canceled
 	function updateSession() {
 		global $conn;
 
@@ -332,6 +354,7 @@
         $stmt->execute(array(':status' => $status, ':session_id' => $session_id));
 	}
 
+	// Delete the chat between and tutor and tutee
 	function deleteChat($session_id) {
 		global $conn;
 
@@ -352,6 +375,8 @@
         $stmt->execute(array(':tutor_id' => $tutor_id, ':tutee_id' => $tutee_id));
 	}
 
+	// Checks for unread messages for the currently logged in user
+	// Used for the chat bubble in the navbar
 	function checkForUnreadMessages() {
 		global $conn; 
 
@@ -438,7 +463,7 @@
 			'Content-Type: application/json'
 		);
 
-		// Are you silly? I'm still gonna send it.
+		// Send the notification
 		$ch = curl_init();
 		curl_setopt($ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
 		curl_setopt($ch,CURLOPT_POST, true);
